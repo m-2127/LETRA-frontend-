@@ -1,0 +1,50 @@
+
+
+<div class="leaveform">
+  
+    <h1>Leave Request Application</h1>
+    
+    <form [formGroup]="LeaveRequestForm" (ngSubmit)="onSubmit()" novalidate>
+    
+      <div class="leavesub">
+        <label>Employee ID: </label>
+        <input formControlName="employeeID" type="text" class="leavetext">
+        <div *ngIf="employeeid.invalid && employeeid.touched">
+          <small>Username is required</small>
+        </div>
+      </div><br>
+    
+      <div class="leavesub">
+        <label>Type of leave: </label><br>      
+        <input type="radio" formControlName="leave" value="annual" class="leaveradio">Annual<br>
+        <input type="radio" formControlName="leave" value="casual" class="leaveradio">Casual<br>
+        <input type="radio" formControlName="leave" value="sick" class="leaveradio">Sick<br>
+        <input type="radio" formControlName="leave" value="Maternity" class="leaveradio">Maternity<br>
+        <input type="radio" formControlName="leave" value="nopay" class="leaveradio">No Pay<br>
+      </div><br>
+    
+      <div class="leavesub">
+      <div>
+        <label>Date: </label>
+        <input formControlName="setdate" type="date">
+      </div>
+      <div>
+        <label>Are you going to be away for more than one day?</label> &nbsp;
+        <input type="button" (click)="show = !show" value="Yes" class="leavebutton">
+        <div *ngIf="show">
+          <label>To: </label>
+          <input formControlName="finishDate" type="date">
+        </div>
+      </div><br>
+      </div>
+      <div class="leavesub">
+        <input type="submit" value="Submit" class="leavesubmit">
+      </div>
+    
+    </form>
+    {{ LeaveRequestForm.value | json }}
+    
+    </div>
+    
+    <router-outlet></router-outlet>
+    

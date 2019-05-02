@@ -1,0 +1,23 @@
+<!-- <p>
+    leaveform works!
+  </p> -->
+
+  <nav class="navbar navbar-dark bg-danger">
+    <div class="container-fluid">
+      
+      <ul class="nav navbar-nav " routerLinkActive="active">
+        <li *ngIf="authority === 'rm'" class="nav-item">
+          <a class="nav-link" routerLink="rm">RM Board</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="navbar">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav" routerLinkActive="active">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="leaveform">Apply Leave</a></li>
+      </ul>
+    </div>
+  </nav>

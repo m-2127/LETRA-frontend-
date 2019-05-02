@@ -1,0 +1,50 @@
+<div *ngIf="!isLoggedIn">
+    <!-- Logged in as {{roles}}.
+  </div> -->
+  
+  
+<!-- <ng-template #loggedOut> -->
+<div class="wrapper">
+  <div id="formContent">
+    <h2 class="underlineHover"  routerLink="/login"  routerLinkActive="active"> Sign In </h2>
+ 
+<div>
+  <br><br>
+    <img src="assets/img/single_user.png" id="icon" alt="User Icon" />
+</div>
+<br><br>
+  <form #userForm="ngForm" (ngSubmit)="userForm.valid && onSubmit()">
+    <input 
+    type="email" 
+    name="email" 
+    #email="ngModel" 
+    [(ngModel)]="userModel.email" 
+    placeholder="Email" 
+    [pattern]="emailRegex" 
+    required
+    [ngClass]="{'invalid-textbox' :userForm.submitted && !email.valid }">
+  <div *ngIf="userForm.submitted && email.errors?.pattern">
+    <label class="validation-message">Invalid email address.</label>
+  </div>
+     
+
+    <input 
+    type="password" 
+    name="password" 
+    #password="ngModel" 
+    [(ngModel)]="userModel.password" 
+    placeholder="Password" 
+    required minlength="4"
+    [ngClass]="{'invalid-textbox' :userForm.submitted && !password.valid }">
+  <div *ngIf="userForm.submitted && password.errors?.minlength">
+    <label class="validation-message">Minimum 4 characters.</label>
+  </div>
+  <br><br>
+    <br><br>
+    <input type="submit" value="Sign In">
+  </form>
+  <!-- Error message -->
+
+</div> </div>
+</div>
+<!-- </ng-template> -->
