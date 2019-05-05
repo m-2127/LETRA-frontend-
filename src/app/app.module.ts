@@ -13,6 +13,12 @@ import { httpInterceptorProviders } from './Service/auth-interceptor';
 import { LeaveformComponent} from './leaveform/leaveform.component';
 import { EmployeeComponent  } from './employee/employee.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { HomeComponent } from './hrm/home/home.component';
+import { ManageusersComponent } from './hrm/manageusers/manageusers.component';
+import { ManageleavesComponent } from './hrm/manageleaves/manageleaves.component';
+import { ApplyleaveComponent } from './hrm/applyleave/applyleave.component';
+import { MyleavesComponent } from './hrm/myleaves/myleaves.component';
+
 
 
 @NgModule({
@@ -23,7 +29,12 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     HrmComponent,
     RmComponent,
     LeaveformComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    HomeComponent,
+    ManageusersComponent,
+    ManageleavesComponent,
+    ApplyleaveComponent,
+    MyleavesComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +61,26 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
       {
         path: 'employee/leaveform',
         component: LeaveformComponent
+      },
+      {
+        path: 'hrm/home',
+        component: HomeComponent
+      },
+      {
+        path: 'hrm/applyleave',
+        component: ApplyleaveComponent
+      },
+      {
+        path: 'hrm/manageleaves',
+        component: ManageleavesComponent
+      },
+      {
+        path: 'hrm/manageusers',
+        component: ManageusersComponent
+      },
+      {
+        path: 'hrm/myleaves',
+        component: MyleavesComponent
       }
 
     ])
