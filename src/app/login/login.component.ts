@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../service/auth.service';
 import { User } from 'user';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { TokenStorageService } from '../Service/token-storage.service';
+import { AuthenticationService } from '../Service/authentication.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  constructor(private _authService: AuthService, private router : Router,
+  constructor(private _authService: AuthenticationService, private router : Router,
     private tokenStorage: TokenStorageService ) { }
 
   userModel = new User('', '');
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this._authService.auth(this.userModel)
     .subscribe(
       result => {
-        if(result && result.accessToken){
+    //    if(result && result.accessToken){
         this.tokenStorage.saveToken(result.accessToken);
         this.tokenStorage.saveUsername(result.username);
         this.tokenStorage.saveAuthorities(result.authorities);
@@ -41,44 +41,33 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
+//        this.reloadPage();
 
-        this.roles.every(role => {
+        this.roles.every(
+          role => {
           if (role === 'ROLE_HRM') {
             this.router.navigate(['hrm']);
+            
             return false;
           } 
-          // else if (role === 'ROLE_RM') {
-          //   this.router.navigate(['rm']);
-          //   return false;
-          //}
-          else 
+          else {
           this.router.navigate(['employee']);
-  
           return true;
-        });
-
-          // localStorage.setItem('token', result.accessToken);
-          // this.router.navigate(['/']);
-          // return true;
           }
-          else
-          this.invalidLogin = true; 
-    }); 
-    //       return false;
-    //     if (result)
-    //     this.router.navigate(['/']);
-    //   else  
-    //     this.invalidLogin = true; 
-    // });
-        //console.log('Success !', resp);
-        
-      //   const keys = resp.headers.keys();
-      //  this.headers = keys.map(key =>
-      //   `${key}: ${resp.headers.get(key)}`);
-      //   console.log(this.headers);
+        },
+        error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.isLoginFailed = true;
+        }
+      );
+  //        }
+    //       else
+    //       this.invalidLogin = true; 
+     }); 
 
-      // },
-      // error => console.error('Error Found', error)
-  //  );
   }
+  // reloadPage() {
+  //   window.location.reload();
+  // }
 }

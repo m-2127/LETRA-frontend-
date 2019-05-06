@@ -1,4 +1,4 @@
-export class ResetPasswordEmail {
+export class EmailInfo {
     email : string;
 
     constructor(email: string) {

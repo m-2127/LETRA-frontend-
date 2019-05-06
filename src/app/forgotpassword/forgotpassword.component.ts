@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ResetPasswordEmail } from '../Service/reset-password-email';
+import { ResetPswdEmailService } from '../Service/reset-pswd-email.service';
+import { EmailInfo } from '../Service/email-info';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -8,13 +9,17 @@ import { ResetPasswordEmail } from '../Service/reset-password-email';
 })
 export class ForgotpasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private resetpswdemailservice : ResetPswdEmailService) { }
 
-  resetpswdemail = new ResetPasswordEmail('');
+  emailinfo = new EmailInfo('');
 
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.resetpswdemailservice.pswdreset(this.emailinfo)
   }
 
 }

@@ -13,6 +13,7 @@ import { httpInterceptorProviders } from './Service/auth-interceptor';
 import { LeaveformComponent} from './leaveform/leaveform.component';
 import { EmployeeComponent  } from './employee/employee.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     HrmComponent,
     RmComponent,
     LeaveformComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,10 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
       {
         path: 'hrm',
         component: HrmComponent
+      },
+      {
+        path: 'forgot',
+        component: ForgotpasswordComponent
       },
       {
         path: 'employee/rm',

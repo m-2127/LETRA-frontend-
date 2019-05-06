@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
-import { AuthService } from '../service/auth.service';
+import { AuthenticationService } from '../Service/authentication.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class LeaveformComponent implements OnInit {
 
   show: boolean = false;
 
-  constructor(private fb: FormBuilder, private _authService: AuthService) { }
+  constructor(private fb: FormBuilder, private _authService: AuthenticationService) { }
 
   LeaveRequestForm = this.fb.group({ employeeID: ['', Validators.required],
     leave: [''],
