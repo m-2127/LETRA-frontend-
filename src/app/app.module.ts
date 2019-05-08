@@ -61,6 +61,10 @@ import { MyleavesComponent } from './hrm/myleaves/myleaves.component';
         component: ForgotpasswordComponent
       },
       {
+        path: 'reset',
+        component: ResetpasswordComponent
+      },
+      {
         path: 'employee/rm',
         component: RmComponent
       },

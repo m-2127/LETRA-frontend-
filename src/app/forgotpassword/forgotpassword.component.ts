@@ -9,9 +9,11 @@ import { EmailInfo } from '../Service/email-info';
 })
 export class ForgotpasswordComponent implements OnInit {
 
-  constructor(private resetpswdemailservice : ResetPswdEmailService) { }
+  constructor(private resetpswdemailservice : ResetPswdEmailService) {
+   }
 
   emailinfo = new EmailInfo('');
+  mail : string;
 
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -19,7 +21,11 @@ export class ForgotpasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    this.resetpswdemailservice.pswdreset(this.emailinfo)
+    this.resetpswdemailservice.sendemail(this.emailinfo)
+    .subscribe(result =>{
+    console.log(result);
+    });
+   
   }
 
 }

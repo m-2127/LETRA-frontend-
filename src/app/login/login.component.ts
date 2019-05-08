@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         this.roles.every(
           role => {
           if (role === 'ROLE_HRM') {
-            this.router.navigate(['hrm']);
+            this.router.navigate(['hrm/home']);
             
             return false;
           } 
