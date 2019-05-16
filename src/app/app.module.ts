@@ -19,6 +19,10 @@ import { ManageusersComponent } from './hrm/manageusers/manageusers.component';
 import { ManageleavesComponent } from './hrm/manageleaves/manageleaves.component';
 import { ApplyleaveComponent } from './hrm/applyleave/applyleave.component';
 import { MyleavesComponent } from './hrm/myleaves/myleaves.component';
+import { ChangepasswordComponent } from './hrm/changepassword/changepassword.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { EdituserComponent } from './hrm/edituser/edituser.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 
@@ -36,64 +40,17 @@ import { MyleavesComponent } from './hrm/myleaves/myleaves.component';
     ManageusersComponent,
     ManageleavesComponent,
     ApplyleaveComponent,
-    MyleavesComponent
+    MyleavesComponent,
+    ChangepasswordComponent,
+    EdituserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: LoginComponent
-      },
-      {
-        path: 'employee',
-        component: EmployeeComponent
-      },
-      {
-        path: 'hrm',
-        component: HrmComponent
-      },
-      {
-        path: 'forgot',
-        component: ForgotpasswordComponent
-      },
-      {
-        path: 'reset',
-        component: ResetpasswordComponent
-      },
-      {
-        path: 'employee/rm',
-        component: RmComponent
-      },
-      {
-        path: 'employee/leaveform',
-        component: LeaveformComponent
-      },
-      {
-        path: 'hrm/home',
-        component: HomeComponent
-      },
-      {
-        path: 'hrm/applyleave',
-        component: ApplyleaveComponent
-      },
-      {
-        path: 'hrm/manageleaves',
-        component: ManageleavesComponent
-      },
-      {
-        path: 'hrm/manageusers',
-        component: ManageusersComponent
-      },
-      {
-        path: 'hrm/myleaves',
-        component: MyleavesComponent
-      }
-
-    ])
+    AppRoutingModule,
+    AngularFontAwesomeModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

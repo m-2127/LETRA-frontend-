@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import * as $ from 'jquery';
+import { AuthenticationService } from 'src/app/Service/authentication.service';
 
 @Component({
   selector: 'app-applyleave',
@@ -7,9 +10,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplyleaveComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private _authService: AuthenticationService) { }
+
+  LeaveRequestForm = this.fb.group({setDate: [''], endDate: [''], leave: [''], Reason: ['']});
+
 
   ngOnInit() {
+    let toggle = true;
+
+    const newLocal = $('.sidebar-icon').click(function () {
+      if (toggle) {
+        $('.page-container').addClass('sidebar-collapsed').removeClass('sidebar-collapsed-back');
+        $('#menu span').css({ 'position': 'absolute' });
+      } else {
+        $('.page-container').removeClass('sidebar-collapsed').addClass('sidebar-collapsed-back');
+        setTimeout(function () {
+          $('#menu span').css({ 'position': 'relative' });
+        }, 400);
+      }
+      toggle = !toggle;
+    });
+
+
+    	$(document).ready(function() {
+			 const navoffeset = $('.header-main').offset().top;
+			 $(window).scroll(function() {
+				const scrollpos = $(window).scrollTop();
+				if (scrollpos >= navoffeset) {
+					$('.header-main').addClass('fixed');
+				} else {
+					$('.header-main').removeClass('fixed');
+				}
+			 });
+
+		});
   }
 
+  onSubmit() {
+    console.log(this.LeaveRequestForm.value);
+    this._authService.apply(this.LeaveRequestForm.value)
+      .subscribe(
+        response => console.log('Success', response),
+        error => console.error('Error', error)
+      );
+  }
 }

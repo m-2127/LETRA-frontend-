@@ -1,38 +1,20 @@
-<!DOCTYPE HTML>
-<html>
 <head>
-<title>Home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Bootstrap Core CSS -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<!-- Custom CSS -->
-<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="assets/css/morris.css" type="text/css"/>
-<!-- Graph CSS -->
-<link href="assets/css/font-awesome.css" rel="stylesheet"> 
-<!-- jQuery -->
-<script src="assets/js/jquery-2.2.0.min.js"></script>
-<!-- //jQuery -->
-<link href='https://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<!-- lined-icons -->
-<!-- <link rel="stylesheet" th:href="@{/css/icon-font.min.css}" type='text/css' /> -->
-<!-- //lined-icons -->
-<link rel="shortcut icon" href="assets/img/favicon.png">
-<link href="assets/css/fullcalendar.min.css" rel='stylesheet' />
-<link href="assets/css/fullcalendar.print.min.css" rel='stylesheet' media='print' />
-<style type="text/css">
-
-.filterStatus {
-    position: relative;
-    top: 2px;
-}
-
-</style>
-</head> 
+	<!-- Bootstrap Core CSS -->
+	<link href="assets/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="assets/css/morris.css" type="text/css"/>
+	<!-- Graph CSS -->
+	<link href="assets/css/font-awesome.css" rel="stylesheet"> 
+	
+	
+	<!-- lined-icons -->
+	<link rel="stylesheet" href="assets/css/icon-font.min.css" type='text/css' />
+	<!-- //lined-icons -->
+	<link rel="shortcut icon" href="assets/img/favicon.png">
+	
+	<link rel="stylesheet" href="assets/css/jquery-ui.css" type="text/css">
+	</head> 
 <body>
 <div class="page-container">
    <!--/content-inner-->
@@ -61,7 +43,7 @@
 										</a>
 										<ul class="dropdown-menu drp-mnu"> 
 											<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
-											<li> <a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+											<li> <a routerLink="/"><i class="fa fa-sign-out"></i> Logout</a> </li>
 										</ul>
 									</li>
 								</ul>
@@ -71,7 +53,7 @@
 				</div>
 <!--heder end here-->
 		<ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="@{/user/home}">Home</a> <i class="fa fa-angle-right"></i></li>
+            <li class="breadcrumb-item"><a routerLink="/hrm/home">Home</a> <i class="fa fa-angle-right"></i></li>
         </ol>
         
         <div class="row">
@@ -101,55 +83,6 @@
 			</div>
 		</div>
 
-<script src="assets/js/moment.min.js"></script>
-<script src="assets/js/fullcalendar.min.js"></script>
-<script>
-var urlSrc = '/leave-management-system/user/get-all-leaves';
-$(document).ready(function() {
-
-    $('#mycalendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,listWeek'
-      },
-      defaultDate: moment().format("YYYY-MM-DD"),
-      eventLimit: true, // allow "more" link when too many events
-      events: urlSrc
-    	  
-    });
-    
-    $('input:checkbox').change(function(){
-    	
-    	$('#mycalendar').fullCalendar('removeEventSource',urlSrc);
-    	urlSrc = '/leave-management-system/user/get-all-leaves?pending='+$('#pending').is(':checked')+'&accepted='+$('#accepted').is(':checked')+'&rejected='+$('#rejected').is(':checked')+'';
-
-    	$('#mycalendar').fullCalendar('removeEvents');
-    	$('#mycalendar').fullCalendar('addEventSource',urlSrc);
-    	//$('#mycalendar').fullCalendar('refetchEvents');
-        
-    });
-
-  });
-
-</script>
-
-<!-- script-for sticky-nav -->
-		<script>
-		$(document).ready(function() {
-			 var navoffeset=$(".header-main").offset().top;
-			 $(window).scroll(function(){
-				var scrollpos=$(window).scrollTop(); 
-				if(scrollpos >=navoffeset){
-					$(".header-main").addClass("fixed");
-				}else{
-					$(".header-main").removeClass("fixed");
-				}
-			 });
-			 
-		});
-		</script>
-		<!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
 
@@ -163,56 +96,31 @@ $(document).ready(function() {
 </div>
   <!--//content-inner-->
 			<!--/sidebar-menu-->
+			<nav>
 				<div class="sidebar-menu">
 					<header class="logo1">
-						<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> 
+						<a class="sidebar-icon"> <span class="fa fa-bars"></span> </a> 
 					</header>
 						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
                            <div class="menu">
-									<ul id="menu" >
-										<li><a th:href="@{/user/home}"><i class="fa fa-home"></i> <span>Home</span><div class="clearfix"></div></a></li>
+									<ul id="menu">
+										<li><a routerLink="/hrm/home"><i class="fa fa-home"></i> <span>Home</span><div class="clearfix"></div></a></li>
 										
-										<li sec:authorize="hasAuthority('MANAGER')"><a th:href="@{/user/manage-users}"><i class="fa fa-users"></i> <span>Manage Users</span><div class="clearfix"></div></a></li>
+										<li><a routerLink="/hrm/manageusers"><i class="fa fa-users"></i> <span>Manage Users</span><div class="clearfix"></div></a></li>
 										
-										<li sec:authorize="hasAuthority('MANAGER')"><a th:href="@{/user/manage-leaves}"><i class="fa fa-calendar-check-o"></i> <span>Manage Leaves</span><div class="clearfix"></div></a></li>
+										<li><a routerLink="/hrm/manageleaves"><i class="fa fa-calendar-check-o"></i> <span>Manage Leaves</span><div class="clearfix"></div></a></li>
 										
-										<li><a th:href="@{/user/apply-leave}"><i class="fa fa-calendar-plus-o"></i> <span>Apply Leave</span><div class="clearfix"></div></a></li>
+										<li><a routerLink="/hrm/applyleave"><i class="fa fa-calendar-plus-o"></i> <span>Apply Leave</span><div class="clearfix"></div></a></li>
 										
-										<li><a th:href="@{/user/my-leaves}"><i class="fa fa-calendar-check-o"></i> <span>My Leaves</span><div class="clearfix"></div></a></li>
+										<li><a routerLink="/hrm/myleaves"><i class="fa fa-calendar-check-o"></i> <span>My Leaves</span><div class="clearfix"></div></a></li>
 										
-										<li><a th:href="@{/user/change-password}"><i class="fa fa-key"></i> <span>Change Password</span><div class="clearfix"></div></a></li>
+										<li><a routerLink="/hrm/changepassword"><i class="fa fa-key"></i> <span>Change Password</span><div class="clearfix"></div></a></li>
 										 
 								  	</ul>
 							</div>
 				</div>
+			</nav>
 				<div class="clearfix"></div>		
 </div>
-							<script>
-							var toggle = true;
-										
-							$(".sidebar-icon").click(function() {                
-							  if (toggle)
-							  {
-								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-								$("#menu span").css({"position":"absolute"});
-							  }
-							  else
-							  {
-								$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-								setTimeout(function() {
-								  $("#menu span").css({"position":"relative"});
-								}, 400);
-							  }
-											
-											toggle = !toggle;
-										});
-							</script>
-<!--js -->
-<script src="assets/js/jquery.nicescroll.js"></script>
-<script src="assets/js/scripts.js"></script>
-<!-- Bootstrap Core JavaScript -->
-   <script src="assets/js/bootstrap.min.js"></script>
-   <!-- /Bootstrap Core JavaScript -->	   
 
 </body>
-</html>

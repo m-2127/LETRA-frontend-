@@ -1,13 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { AuthenticationService } from 'src/app/Service/authentication.service';
 import * as $ from 'jquery';
 @Component({
-  selector: 'app-myleaves',
-  templateUrl: './myleaves.component.html',
-  styleUrls: ['./myleaves.component.css']
+  selector: 'app-edituser',
+  templateUrl: './edituser.component.html',
+  styleUrls: ['./edituser.component.css']
 })
-export class MyleavesComponent implements OnInit {
+export class EdituserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private _authService: AuthenticationService) { }
+
+  EditUser = this.fb.group({ firstName: [''], lastName: [''], email: [''], password: [''] });
+
+  // tslint:disable-next-line:max-line-length
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 
   ngOnInit() {
     let toggle = true;
@@ -38,6 +46,16 @@ export class MyleavesComponent implements OnInit {
 			 });
 
 		});
+
+  }
+
+  onSubmit() {
+    console.log(this.EditUser.value);
+    this._authService.apply(this.EditUser.value)
+      .subscribe(
+        response => console.log('Success', response),
+        error => console.error('Error', error)
+      );
   }
 
 }

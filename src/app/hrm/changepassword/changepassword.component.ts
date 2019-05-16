@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+
 @Component({
-  selector: 'app-myleaves',
-  templateUrl: './myleaves.component.html',
-  styleUrls: ['./myleaves.component.css']
+  selector: 'app-changepassword',
+  templateUrl: './changepassword.component.html',
+  styleUrls: ['./changepassword.component.css']
 })
-export class MyleavesComponent implements OnInit {
+export class ChangepasswordComponent implements OnInit {
 
   constructor() { }
 
