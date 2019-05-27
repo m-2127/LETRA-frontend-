@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { FormBuilder } from '@angular/forms';
+import { AuthenticationService } from 'src/app/Service/authentication.service';
 @Component({
   selector: 'app-manageusers',
   templateUrl: './manageusers.component.html',
@@ -7,7 +9,9 @@ import * as $ from 'jquery';
 })
 export class ManageusersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb:FormBuilder, private _authService: AuthenticationService) { }
+
+  ManageUsersForm = this.fb.group({name: [''], email: [''], mobile: [''], password: [''], gender: ['']});
 
   ngOnInit() {
     let toggle = true;
@@ -38,6 +42,15 @@ export class ManageusersComponent implements OnInit {
 			 });
 
 		});
+  }
+
+  onSubmit() {
+    console.log(this.ManageUsersForm.value);
+    this._authService.manage(this.ManageUsersForm.value)
+      .subscribe(
+        response => console.log('Success', response),
+        error => console.error('Error', error)
+      );
   }
 
 }

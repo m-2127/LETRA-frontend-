@@ -23,4 +23,8 @@ export class AuthenticationService {
   apply(data) {
     return this.http.post<any>('http://localhost:8090/api/employee/applyleave', data);
   }
+
+  manage(data) {
+    return this.http.post<any>('http://localhost:8090/api/auth/registration', data)
+  }
 }

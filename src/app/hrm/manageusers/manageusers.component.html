@@ -53,41 +53,58 @@
 				</div>
 <!--heder end here-->
 	<ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="user/home">Home</a> <i class="fa fa-angle-right"></i> Manage Users</li>
+        <li class="breadcrumb-item"><a routerLink="hrm/home">Home</a> <i class="fa fa-angle-right"></i> Manage Users</li>
     </ol>
-	<div class="agile-grids">	
-				<!-- tables -->
-			<div class="alert alert-info" if="${(param.successMessage != null)}">
-					<span text="${param.successMessage[0]}"></span>
-            </div>		
-			<div class="agile-tables">
+		<div class="grid-form1">	
 
-				  <h3>Manage Users</h3>
-				  <table id="table-two-axis" class="two-axis">
-					<thead>
-					  <tr>
-                		<th>Name</th>
-                		<th>E-mail</th>
-                		<th>Role</th>
-                		<th>Action</th>
-                	  </tr>
-					</thead>
-					<tbody>
-					  <tr each="user,iterStat : ${users}">
-	                	<!-- <td text="${iterStat.count}"></td> -->
-	                	<td text="${user.firstName} +' '+${user.lastName}"></td>
-	                	<td text="${user.email}"></td>
-	                	<td text="${user.role}"></td>
-	                	<td>
-	                		<a href="@{/user/manage-users/edit/{id}(id=${user.id})}"><i class="fa fa-edit" title="EDIT"></i></a>
-	                		<a href="@{/user/manage-users/block/{id}(id=${user.id})}" if="${user.active==true}"><i class="fa fa-ban" title="BLOCK"></i></a>
-	                		<a href="@{/user/manage-users/unblock/{id}(id=${user.id})}" if="${user.active==false}"><i class="fa fa-unlock" title="UNLOCK"></i></a>
-	                		<a href="@{/user/manage-users/delete/{id}(id=${user.id})}"><i class="fa fa-trash-o" title="DELETE"></i></a>
-	                	</td>
-                	  </tr>
-					</tbody>
-				  </table>
+					<h3>Manage Users</h3>
+					<div class="tab-content tab-pane active" id="horizontal-form">
+					
+					<form [formGroup]="ManageUsersForm" (ngSubmit)="onSubmit()" class="form-horizontal" novalidate>
 
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Name  :</label>
+						<div class="col-sm-6">
+							<input type="text" formControlName="name" placeholder="Name" class="form-control1" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Email  :</label>
+						<div class="col-sm-6">
+							<input type="email" formControlName="email" placeholder="Email" class="form-control1"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Mobile No  :</label>
+						<div class="col-sm-6">
+							<input type="text" formControlName="mobile" placeholder="Mobile No:" class="form-control1"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Password  :</label>
+						<div class="col-sm-6">
+							<input type="password" formControlName="password" placeholder="Password" class="form-control1"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Gender  :</label>
+						<div class="col-sm-6">
+							<input type="text" formControlName="gender" placeholder="Gender" class="form-control1"/>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-8 col-sm-offset-4">
+							<button type="submit" class="btn btn-primary">Add User</button>
+							<a routerLink="hrm/home"><button type="button" class="btn btn-default">Cancel</button></a>
+						</div>
+					</div>
+
+					</form>
 			</div>
 			<!-- //table -->
 	</div>
