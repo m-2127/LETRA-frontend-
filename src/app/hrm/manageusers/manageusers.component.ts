@@ -11,7 +11,7 @@ export class ManageusersComponent implements OnInit {
 
   constructor(private fb:FormBuilder, private _authService: AuthenticationService) { }
 
-  ManageUsersForm = this.fb.group({name: [''], email: [''], mobile: [''], password: [''], gender: ['']});
+  ManageUsersForm = this.fb.group({name: [''], email: [''], mobilenumber: [''], password: [''], gender: ['']});
 
   ngOnInit() {
     let toggle = true;

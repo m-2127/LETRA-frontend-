@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import * as $ from 'jquery';
 import { AuthenticationService } from 'src/app/Service/authentication.service';
+import { TokenStorageService } from 'src/app/Service/token-storage.service';
 
 @Component({
   selector: 'app-applyleave',
@@ -10,12 +11,20 @@ import { AuthenticationService } from 'src/app/Service/authentication.service';
 })
 export class ApplyleaveComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private _authService: AuthenticationService) { }
+  constructor(private fb: FormBuilder, private _authService: AuthenticationService, private token: TokenStorageService) { }
 
   LeaveRequestForm = this.fb.group({setDate: [''], endDate: [''], leave: [''], Reason: ['']});
 
+  info: any;
 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities()
+    };
+
+
     let toggle = true;
 
     const newLocal = $('.sidebar-icon').click(function () {
@@ -54,4 +63,11 @@ export class ApplyleaveComponent implements OnInit {
         error => console.error('Error', error)
       );
   }
+
+  logout() {
+    this.token.signOut();
+    window.location.reload();
+  }
+
+
 }
