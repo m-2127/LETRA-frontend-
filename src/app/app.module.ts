@@ -23,6 +23,8 @@ import { ChangepasswordComponent } from './hrm/changepassword/changepassword.com
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { EdituserComponent } from './hrm/edituser/edituser.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ProjectDetailsComponent } from './rm/project-details/project-details.component';
+import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemployee.component';
 
 
 
@@ -42,7 +44,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ApplyleaveComponent,
     MyleavesComponent,
     ChangepasswordComponent,
-    EdituserComponent
+    EdituserComponent,
+    ProjectDetailsComponent,
+    AllocateemployeeComponent
   ],
   imports: [
     BrowserModule,
