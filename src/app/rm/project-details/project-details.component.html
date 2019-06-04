@@ -43,73 +43,99 @@
           <div class="grid-form1">
               <h3>Enter Project Details</h3>
               <div class="tab-content tab-pane active" id="horizontal-form">
-                  
-                <form [formGroup]="ProjectDetailsForm" (ngSubmit)="onSubmit()" class="form-horizontal" novalidate>
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label">Project Name :</label>
-                    <div class="col-sm-6">
-                      <input type="text" formControlName="projectName">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label">Start Date :</label>
-                    <div class="col-sm-6">
-                      <input type="date" formControlName="startDate">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label">End Date :</label>
-                    <div class="col-sm-6">
-                      <input type="date" formControlName="endDate">
-                    </div>
-                  </div>
-                  <br>
-                  <div class="form-group">
-                    <div>
-                      <label class="col-sm-4 control-label">Task Details</label>
-                      <button type="button" class="" (click)="addTask()">Add a task</button>
-                    </div><br>
-
-                    <div formArrayName="tasks" *ngFor="let task of tasks.controls; let i=index" >
-                      <div formGroupName="{{i}}" class="form-group">
-                        <div>
-                          <label class="col-sm-4 control-label">Task Name :</label>
-                          <div class="col-sm-6">
-                            <input type="text" formControlName="taskNamei">
-                          </div>
+                   
+                {{ ProjectDetailsForm.value | json }}
+                    
+                    <form [formGroup]="ProjectDetailsForm" (submit)="submit()" class="form-horizontal">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Project Name</label>
+                        <div class="col-sm-6">
+                          <input type="text" formControlName="name" class="form-control1">
+                          <!--<span *ngIf="form.controls['name'].touched && form.control['name'].hasError('required')">
+                            Project Name is required !
+                          </span>-->
                         </div>
-                        <div>
-                          <label class="col-sm-4 control-label">Start Date :</label>
-                          <div class="col-sm-6">
-                            <input type="date" formControlName="taskStarti">
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Start Date</label>
+                        <div class="col-sm-6">
+                          <input type="date" formControlName="startDate" class="form-control1">
+                          <!--<span *ngIf="form.controls['startDate'].touched && form.control['startDate'].hasError('required')">
+                            Start Date is required !
+                          </span>-->
                         </div>
-                        <div>
-                          <label class="col-sm-4 control-label">End Date :</label>
-                          <div class="col-sm-6">
-                            <input type="date" formControlName="taskEndi">
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">End Date</label>
+                        <div class="col-sm-6">
+                          <input type="date" formControlName="endDate" class="form-control1">
+                          <!--<span *ngIf="form.controls['endDate'].touched && form.control['endDate'].hasError('required')">
+                            End Date is required !
+                          </span>-->
                         </div>
-                        <div>
-                          <label class="col-sm-4 control-label">Description :</label>
-                          <div class="col-sm-6">
-                            <textarea formControlName="Descriptioni" class="form-control"></textarea>
+                      </div>
+                      <div class="form-group">
+                      <div class="col-sm-6">Task Details</div><br>
+                      <div formArrayName="tasks">
+                        <div class="form-group">
+                          <div class="form-group" *ngFor="let task of taskFormGroup.controls; let i = index">
+                            <div [formGroupName]="i" class="form-group">
+                              <div class="form-group col-6">
+                                <label class="col-sm-4 control-label">Task Name</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" type="text" formControlName="taskName" class="form-control1">
+                                  <!--<span class="text-danger" *ngIf="getTasksFormGroup(i).controls['taskName'].touched && getTasksFormGroup(i).controls['taskName'].hasError('required')">
+                                    Task Name required !
+                                  </span>--> 
+                                </div>
+                              </div>
+                              <div class="form-group col-6">
+                                <label class="col-sm-4 control-label">Start Date</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" type="date" formControlName="taskStartDate" class="form-control1">
+                                  <!--<span class="text-danger" *ngIf="getTaskFormGroup(i).controls['taskStartDate'].touched && getTaskFormGroup(i).controls['taskStartDate'].hasError('required')">
+                                    Start Date required !
+                                  </span>-->      
+                                </div>
+                              </div>
+                              <div class="form-group col-6">
+                                <label class="col-sm-4 control-label">End Date</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" type="date" formControlName="taskEndDate" class="form-control1">
+                                  <!--<span class="text-danger" *ngIf="getTaskFormGroup(i).controls['taskEndDate'].touched && getTaskFormGroup(i).controls['taskEndDate'].hasError('required')">
+                                    End Date required !
+                                  </span>-->      
+                                </div>
+                              </div>
+                              <div class="form-group col-6">
+                                <label class="col-sm-4 control-label">Description</label>
+                                <div class="col-sm-6">
+                                  <textarea formControlName="description"></textarea>
+                                  <!--<span class="text-danger" *ngIf="getTaskFormGroup(i).controls['description'].touched && getTaskFormGroup(i).controls['description'].hasError('required')">
+                                    Description required !
+                                  </span>-->      
+                                </div>
+                              </div>
+                              <div class="form-group col-12 text-right">
+                                <button class="btn btn-danger" type="button" (click)="removeTask(i)"> Remove </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      <div class="col-12">
+                        <button class="btn btn-primary m-1" type="button" (click)="addTask()"> Add Task </button>
+                      </div>
+                      </div>
+                      <div class="form-group col-12">
+                        <button class="btn btn-success m-1" [disabled]="!ProjectDetailsForm.valid" type="submit"> Submit </button>
+                      </div>
+                       
+                        
+                    </form>
+                
                   </div>
-                  <div class="row">
-                    <div class="col-sm-8 col-sm-offset-4">
-                      <button type="submit" class="btn btn-primary">Change password</button>
-                      <a routerLink="hrm/home"><button type="button" class="btn btn-default">Cancel</button></a>
-                    </div>
-                  </div>
-                </form>
-                   
-              </div>
+                
            </div>
   
   <!--inner block start here-->
