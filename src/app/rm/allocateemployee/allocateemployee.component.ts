@@ -9,30 +9,52 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 })
 export class AllocateemployeeComponent implements OnInit {
 
-  get lists() {
-    return this.AllocateEmployeeForm.get('tasks') as FormArray;
+  public allocateEmployeeForm: FormGroup;
+  public employeeList: FormArray;
+
+  get employeelist() {
+    return this.allocateEmployeeForm.get('lists') as FormArray;
   }
 
-  addEmployee() {
-    this.lists.push(this.fb.control(''));
+  addemployee() {
+    this.employeeList.push(this.createlist());
   }
+  
+  constructor( private fb: FormBuilder ) {}
 
-  createLists(): FormGroup{
+
+  createlist(): FormGroup{
     return this.fb.group({
-      projectId:'',
-      taskId:'',
-      employeeId:'',
-      rmId:''
-    })
+      projectId: [null, Validators.compose([Validators.required])],
+      taskId: [null, Validators.compose([Validators.required])],
+      employeeId: [null, Validators.compose([Validators.required])],
+      rmId: [null, Validators.compose([Validators.required])]
+    });
   }
-
-  constructor(private fb: FormBuilder) { }
-
-  AllocateEmployeeForm = this.fb.group({
-    lists: this.fb.array([this.createLists()])
-  })
 
   ngOnInit() {
+    this.allocateEmployeeForm = this.fb.group({
+      lists: this.fb.array([this.createlist()])
+    });
+
+    this.employeeList = this.allocateEmployeeForm.get('lists') as FormArray;
+  
   }
+
+  
+  removeList(index) {
+    this.employeeList.removeAt(index);
+  }
+
+  getTasksFormGroup(index): FormGroup {
+    const formGroup = this.employeeList.controls[index] as FormGroup;
+    return formGroup;
+  }
+
+
+  submit() {
+    console.log(this.allocateEmployeeForm.value);
+  }
+
 
 }

@@ -29,7 +29,7 @@ export class AuthenticationService {
   }
 
   ProjectDetails(data) {
-    return this.http.post<any>('', data);
+    return this.http.post<any>('http://localhost:8090/api/rm/addproject', data);
   }
 
 }

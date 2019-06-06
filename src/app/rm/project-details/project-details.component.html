@@ -26,7 +26,7 @@
           <div class="header-main">
             <div class="" style="float:left;">
                   <h2><a href="@{/user/home}">Leave Management System</a></h2>
-                  {{ LeaveRequestForm.value | json }}
+                
             </div>	
               <div class="profile_details w3l" style="float:right;">	
                 <h4><a routerLink="/hrm/edituser"><i class="fa fa-user"></i> Profile   </a> </h4>
@@ -50,73 +50,73 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Project Name</label>
                         <div class="col-sm-6">
-                          <input type="text" formControlName="name" class="form-control1">
-                          <!--<span *ngIf="form.controls['name'].touched && form.control['name'].hasError('required')">
-                            Project Name is required !
-                          </span>-->
+                          <input type="text" formControlName="name" class="form-control1" required>
+                          <span *ngIf="ProjectDetailsForm.get('name').touched && ProjectDetailsForm.get('name').hasError('required')">
+                            Project Name is required.
+                          </span>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Start Date</label>
                         <div class="col-sm-6">
-                          <input type="date" formControlName="startDate" class="form-control1">
-                          <!--<span *ngIf="form.controls['startDate'].touched && form.control['startDate'].hasError('required')">
-                            Start Date is required !
-                          </span>-->
+                          <input type="date" formControlName="startDate" class="form-control1" required>
+                          <span *ngIf="ProjectDetailsForm.get('startDate').touched && ProjectDetailsForm.get('startDate').hasError('required')">
+                            Project Name is required.
+                          </span>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label">End Date</label>
                         <div class="col-sm-6">
-                          <input type="date" formControlName="endDate" class="form-control1">
-                          <!--<span *ngIf="form.controls['endDate'].touched && form.control['endDate'].hasError('required')">
-                            End Date is required !
-                          </span>-->
+                          <input type="date" formControlName="endDate" class="form-control1" required>
+                          <span *ngIf="ProjectDetailsForm.get('endDate').touched && ProjectDetailsForm.get('endDate').hasError('required')">
+                            Project Name is required.
+                          </span>
                         </div>
                       </div>
                       <div class="form-group">
                       <div class="col-sm-6">Task Details</div><br>
                       <div formArrayName="tasks">
-                        <div class="form-group">
+                        <div class="form-group2">
                           <div class="form-group" *ngFor="let task of taskFormGroup.controls; let i = index">
                             <div [formGroupName]="i" class="form-group">
-                              <div class="form-group col-6">
+                              <div class="form-group">
                                 <label class="col-sm-4 control-label">Task Name</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control" type="text" formControlName="taskName" class="form-control1">
-                                  <!--<span class="text-danger" *ngIf="getTasksFormGroup(i).controls['taskName'].touched && getTasksFormGroup(i).controls['taskName'].hasError('required')">
+                                  <input class="form-control" type="text" formControlName="taskName" class="form-control1" required>
+                                  <span class="text-danger" *ngIf="getTasksFormGroup(i).controls['taskName'].touched && getTasksFormGroup(i).controls['taskName'].hasError('required')">
                                     Task Name required !
-                                  </span>--> 
+                                  </span>
                                 </div>
                               </div>
-                              <div class="form-group col-6">
+                              <div class="form-group">
                                 <label class="col-sm-4 control-label">Start Date</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control" type="date" formControlName="taskStartDate" class="form-control1">
-                                  <!--<span class="text-danger" *ngIf="getTaskFormGroup(i).controls['taskStartDate'].touched && getTaskFormGroup(i).controls['taskStartDate'].hasError('required')">
+                                  <input class="form-control" type="date" formControlName="taskStartDate" class="form-control1" required>
+                                  <span class="text-danger" *ngIf="getTaskFormGroup(i).controls['taskStartDate'].touched && getTaskFormGroup(i).controls['taskStartDate'].hasError('required')">
                                     Start Date required !
-                                  </span>-->      
+                                  </span>
                                 </div>
                               </div>
-                              <div class="form-group col-6">
+                              <div class="form-group">
                                 <label class="col-sm-4 control-label">End Date</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control" type="date" formControlName="taskEndDate" class="form-control1">
-                                  <!--<span class="text-danger" *ngIf="getTaskFormGroup(i).controls['taskEndDate'].touched && getTaskFormGroup(i).controls['taskEndDate'].hasError('required')">
+                                  <input class="form-control" type="date" formControlName="taskEndDate" class="form-control1" required>
+                                  <span class="text-danger" *ngIf="getTaskFormGroup(i).controls['taskEndDate'].touched && getTaskFormGroup(i).controls['taskEndDate'].hasError('required')">
                                     End Date required !
-                                  </span>-->      
+                                  </span>
                                 </div>
                               </div>
-                              <div class="form-group col-6">
+                              <div class="form-group">
                                 <label class="col-sm-4 control-label">Description</label>
                                 <div class="col-sm-6">
-                                  <textarea formControlName="description"></textarea>
-                                  <!--<span class="text-danger" *ngIf="getTaskFormGroup(i).controls['description'].touched && getTaskFormGroup(i).controls['description'].hasError('required')">
+                                  <textarea formControlName="description" required></textarea>
+                                  <span class="text-danger" *ngIf="getTaskFormGroup(i).controls['description'].touched && getTaskFormGroup(i).controls['description'].hasError('required')">
                                     Description required !
-                                  </span>-->      
+                                  </span>     
                                 </div>
-                              </div>
-                              <div class="form-group col-12 text-right">
+                              </div><br>
+                              <div class="breadcrumb text-right">
                                 <button class="btn btn-danger" type="button" (click)="removeTask(i)"> Remove </button>
                               </div>
                             </div>
