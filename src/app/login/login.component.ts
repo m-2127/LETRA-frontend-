@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
             return false;
           } 
           else {
-          this.router.navigate(['employee']);
+          this.router.navigate(['employee/leaveform']);
           return true;
           }
         },
