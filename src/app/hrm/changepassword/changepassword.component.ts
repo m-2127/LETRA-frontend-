@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { PasswordValidator } from '../../shared/password.validator';
+
+
 @Component({
   selector: 'app-changepassword',
   templateUrl: './changepassword.component.html',
@@ -8,10 +12,20 @@ import * as $ from 'jquery';
 })
 export class ChangepasswordComponent implements OnInit {
 
-  constructor() { }
+  pwRegex = /^([a-zA-Z0-9@*#]{8,15})$/;
+
+  constructor(private fb: FormBuilder) { }
+
+  changePasswordForm = this.fb.group({
+    currentPassword: ['', Validators.required],
+    newPassword: ['password', Validators.required],
+    reEnterPassword: ['password', Validators.required]
+  }, {validator: PasswordValidator});
+
 
   ngOnInit() {
-    let toggle = true;
+
+        let toggle = true;
 
     const newLocal = $('.sidebar-icon').click(function () {
       if (toggle) {
@@ -38,7 +52,10 @@ export class ChangepasswordComponent implements OnInit {
 				}
 			 });
 
-		});
+    });
+    
+    
+  
   }
 
 }

@@ -25,6 +25,11 @@ export class AuthenticationService {
   }
 
   manage(data) {
-    return this.http.post<any>('http://localhost:8090/api/auth/registration', data)
+    return this.http.post<any>('http://localhost:8090/api/auth/registration', data);
   }
+
+  ProjectDetails(data) {
+    return this.http.post<any>('', data);
+  }
+
 }

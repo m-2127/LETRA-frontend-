@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { TokenStorageService } from 'src/app/Service/token-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,17 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private token: TokenStorageService) { }
+
+  info: any;
 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities()
+    };
+
     let toggle = true;
 
     const newLocal = $('.sidebar-icon').click(function () {
@@ -39,6 +48,11 @@ export class HomeComponent implements OnInit {
 			 });
 
 		});
+  }
+
+  logout() {
+    this.token.signOut();
+    window.location.reload();
   }
 
 }
