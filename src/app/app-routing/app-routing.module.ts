@@ -15,6 +15,8 @@ import { ManageusersComponent } from '../hrm/manageusers/manageusers.component';
 import { MyleavesComponent } from '../hrm/myleaves/myleaves.component';
 import { ChangepasswordComponent } from '../hrm/changepassword/changepassword.component';
 import { EdituserComponent } from '../hrm/edituser/edituser.component';
+import { ProjectDetailsComponent } from '../rm/project-details/project-details.component';
+import { AllocateemployeeComponent } from '../rm/allocateemployee/allocateemployee.component';
 
 const routes: Routes = [
   {
@@ -68,6 +70,14 @@ const routes: Routes = [
   {
     path: 'hrm/edituser',
     component: EdituserComponent
+  },
+  {
+    path: 'rm/projectdetails',
+    component: ProjectDetailsComponent
+  },
+  {
+    path: 'rm/allocateemployee',
+    component: AllocateemployeeComponent
   }
 ];
 

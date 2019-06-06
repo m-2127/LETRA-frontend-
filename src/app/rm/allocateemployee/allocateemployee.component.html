@@ -1,0 +1,129 @@
+
+
+<head>
+  <!-- Bootstrap Core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <!-- Custom CSS -->
+  <link href="assets/css/style.css" rel='stylesheet' type='text/css' />
+  <link rel="stylesheet" href="assets/css/morris.css" type="text/css"/>
+  <!-- Graph CSS -->
+  <link href="assets/css/font-awesome.css" rel="stylesheet"> 
+  
+  
+  <!-- lined-icons -->
+  <link rel="stylesheet" href="assets/css/icon-font.min.css" type='text/css' />
+  <!-- //lined-icons -->
+  <link rel="shortcut icon" href="assets/img/favicon.png">
+  
+  <link rel="stylesheet" href="assets/css/jquery-ui.css" type="text/css">
+  </head> 
+  <body>
+  <div class="page-container">
+     <!--/content-inner-->
+    <div class="left-content">
+       <div class="mother-grid-inner">
+               <!--header start here-->
+          <div class="header-main">
+            <div class="" style="float:left;">
+                  <h2><a href="@{/user/home}">Leave Management System</a></h2>
+            </div>	
+              <div class="profile_details w3l" style="float:right;">	
+                <h4><a routerLink="/hrm/edituser"><i class="fa fa-user"></i> Profile   </a> </h4>
+                <h4><a (click)="logout()"><i class="fa fa-sign-out"></i> Logout   </a> </h4>
+              </div>
+                
+               <div class="clearfix"> </div>	
+          </div>
+  <!--heder end here-->
+      <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="hrm/home">Home</a> <i class="fa fa-angle-right"></i> Allocate Employee </li>
+          </ol>
+          
+          <div class="grid-form1">
+              <h3>Allocate Employees</h3>
+              <div class="tab-content tab-pane active" id="horizontal-form">
+                  
+                <form [formGroup]="allocateEmployeeForm" (submit)="submit()">
+                  <div formArrayName="lists">
+                    <div *ngFor="let lists of employeelist.controls; let i = index">
+                      <div [formGroupName]="i">
+                        <div>
+                          <label>Project ID</label>
+                          <div>
+                            <input type="text" formControlName="projectId">
+                          </div>
+                        </div>
+                        <div>
+                          <label>Task ID</label>
+                          <div>
+                            <input type="text" formControlName="taskId">
+                          </div>
+                        </div>
+                        <div>
+                          <label>Employee ID</label>
+                          <div>
+                            <input type="text" formControlName="employeeId">
+                          </div>
+                        </div>
+                        <div>
+                          <label>Reporting Manager's ID</label>
+                          <div>
+                            <input type="text" formControlName="rmId">
+                          </div>
+                        </div>
+                        <div class="form-group col-12 text-right">
+                            <button class="btn btn-danger" type="button" (click)="removeList(i)"> Remove </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                      <button class="btn btn-primary m-1" type="button" (click)="addemployee()"> Add another employee </button>
+                      <button class="btn btn-success m-1" [disabled]="!allocateEmployeeForm.valid" type="submit"> Submit </button>
+                  </div>
+                
+                </form>
+                
+              </div>
+           </div>
+  
+  <!--inner block start here-->
+  <div class="inner-block">
+  
+  </div>
+  <!--inner block end here-->
+  </div>
+  </div>
+    <!--//content-inner-->
+        <!--/sidebar-menu-->
+        <nav>
+          <div class="sidebar-menu">
+            <header class="logo1">
+              <a class="sidebar-icon"> <span class="fa fa-bars"></span> </a> 
+            </header>
+              <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+                             <div class="menu">
+                    <ul id="menu">
+                      <li><a routerLink="/hrm/home"><i class="fa fa-home"></i> <span>Home</span><div class="clearfix"></div></a></li>
+                      
+                      <li><a routerLink="/hrm/manageusers"><i class="fa fa-users"></i> <span>Manage Users</span><div class="clearfix"></div></a></li>
+                      
+                      <li><a routerLink="/hrm/manageleaves"><i class="fa fa-calendar-check-o"></i> <span>Manage Leaves</span><div class="clearfix"></div></a></li>
+                      
+                      <li><a routerLink="/hrm/applyleave"><i class="fa fa-calendar-plus-o"></i> <span>Apply Leave</span><div class="clearfix"></div></a></li>
+                      
+                      <li><a routerLink="/hrm/myleaves"><i class="fa fa-calendar-check-o"></i> <span>My Leaves</span><div class="clearfix"></div></a></li>
+                      
+                      <li><a routerLink="/hrm/changepassword"><i class="fa fa-key"></i> <span>Change Password</span><div class="clearfix"></div></a></li>
+                       
+                      </ul>
+                </div>
+          </div>
+        </nav>
+          <div class="clearfix"></div>		
+  </div>
+  
+  
+  
+  </body>
+  
