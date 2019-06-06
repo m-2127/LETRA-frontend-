@@ -27,4 +27,8 @@ export class AuthenticationService {
   manage(data) {
     return this.http.post<any>('http://localhost:8090/api/auth/registration', data);
   }
+
+  edit(data) {
+    return this.http.post<any>('http://localhost:8090/api/auth/edituser', data);
+  }
 }

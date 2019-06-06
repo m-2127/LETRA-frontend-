@@ -23,6 +23,7 @@ import { ChangepasswordComponent } from './hrm/changepassword/changepassword.com
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { EdituserComponent } from './hrm/edituser/edituser.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { TeammanagementComponent } from './rm/teammanagement/teammanagement.component';
 
 
 
@@ -42,7 +43,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ApplyleaveComponent,
     MyleavesComponent,
     ChangepasswordComponent,
-    EdituserComponent
+    EdituserComponent,
+    TeammanagementComponent
   ],
   imports: [
     BrowserModule,
