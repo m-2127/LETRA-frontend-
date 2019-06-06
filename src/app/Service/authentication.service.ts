@@ -28,8 +28,12 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:8090/api/auth/registration', data);
   }
 
-  ProjectDetails(data) {
-    return this.http.post<any>('', data);
+  edit(data) {
+    return this.http.post<any>('http://localhost:8090/api/auth/edituser', data);
+  }
+
+  details(data) {
+    return this.http.post<any>('http://localhost:8090/api/auth/addprojects', data);
   }
 
 }

@@ -47,6 +47,7 @@ import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemploye
     EdituserComponent,
     ProjectDetailsComponent,
     AllocateemployeeComponent
+
   ],
   imports: [
     BrowserModule,

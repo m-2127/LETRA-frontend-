@@ -53,7 +53,7 @@ export class ProjectDetailsComponent implements OnInit {
 
     submit() {
       console.log(this.ProjectDetailsForm.value);
-      this._authService.apply(this.ProjectDetailsForm.value)
+      this._authService.details(this.ProjectDetailsForm.value)
         .subscribe(
           response => console.log('Success', response),
           error => console.error('Error', error)

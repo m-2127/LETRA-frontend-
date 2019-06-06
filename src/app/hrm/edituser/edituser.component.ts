@@ -51,7 +51,7 @@ export class EdituserComponent implements OnInit {
 
   onSubmit() {
     console.log(this.EditUser.value);
-    this._authService.apply(this.EditUser.value)
+    this._authService.edit(this.EditUser.value)
       .subscribe(
         response => console.log('Success', response),
         error => console.error('Error', error)
