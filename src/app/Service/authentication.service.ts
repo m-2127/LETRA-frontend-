@@ -36,4 +36,8 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:8090/api/auth/addprojects', data);
   }
 
+  getDetails() {
+    return this.http.get('https://jsonplaceholder.typicode.com/posts');
+  }
+
 }

@@ -37,14 +37,7 @@
             <li class="breadcrumb-item"><a routerLink="/hrm/home">Home</a> <i class="fa fa-angle-right"></i></li>
         </ol>
         
-        <div class="row">
-              <div class="col-lg-12 ">
-                  <div class="alert alert-info" th:if="${(param.successMessage != null)}">
-						<span th:text="${param.successMessage[0]}"></span>
-                  </div>
-                 
-              </div>
-        </div>
+        
         
         <div class="grids">
 			<div class="agile-calendar-grid">
@@ -66,13 +59,12 @@
 
 <!--inner block start here-->
 <div class="inner-block">
-
+	<ul>
+		<li *ngFor="let detail of details$ | async">{{ detail.userId }} and name {{detail.title}}</li>
+	</ul>
 </div>
 <!--inner block end here-->
-<!--copy rights start here-->
-<div class="copyrights">
-</div>	
-<!--COPY rights end here-->
+
 </div>
 </div>
   <!--//content-inner-->
@@ -101,7 +93,7 @@
 							</div>
 				</div>
 			</nav>
-				<div class="clearfix"></div>		
+		<div class="clearfix"></div>		
 </div>
 
 </body>
