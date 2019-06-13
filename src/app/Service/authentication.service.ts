@@ -33,7 +33,7 @@ export class AuthenticationService {
   }
 
   details(data) {
-    return this.http.post<any>('http://localhost:8090/api/auth/addprojects', data);
+    return this.http.post<any>('http://localhost:8090/api/rm/addproject', data);
   }
 
 }
