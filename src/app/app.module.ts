@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -25,6 +26,7 @@ import { EdituserComponent } from './hrm/edituser/edituser.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ProjectDetailsComponent } from './rm/project-details/project-details.component';
 import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemployee.component';
+import { FullcalendarComponent } from './fullcalendar/fullcalendar.component';
 
 
 
@@ -46,7 +48,8 @@ import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemploye
     ChangepasswordComponent,
     EdituserComponent,
     ProjectDetailsComponent,
-    AllocateemployeeComponent
+    AllocateemployeeComponent,
+    FullcalendarComponent
 
   ],
   imports: [
@@ -55,7 +58,8 @@ import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemploye
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FullCalendarModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

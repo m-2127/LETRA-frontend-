@@ -17,6 +17,7 @@ import { ChangepasswordComponent } from '../hrm/changepassword/changepassword.co
 import { EdituserComponent } from '../hrm/edituser/edituser.component';
 import { ProjectDetailsComponent } from '../rm/project-details/project-details.component';
 import { AllocateemployeeComponent } from '../rm/allocateemployee/allocateemployee.component';
+import { FullcalendarComponent } from 'src/app/fullcalendar/fullcalendar.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,10 @@ const routes: Routes = [
   {
     path: 'rm/allocateemployee',
     component: AllocateemployeeComponent
+  },
+  { 
+    path:'fullcalendar', 
+    component: FullcalendarComponent
   }
 ];
 
