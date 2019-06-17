@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -58,8 +57,7 @@ import { FullcalendarComponent } from './fullcalendar/fullcalendar.component';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularFontAwesomeModule,
-    FullCalendarModule
+    AngularFontAwesomeModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
