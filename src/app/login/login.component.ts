@@ -33,10 +33,11 @@ export class LoginComponent implements OnInit {
     this._authService.auth(this.userModel)
     .subscribe(
       result => {
-    //    if(result && result.accessToken){
+        if(result && result.accessToken){
         this.tokenStorage.saveToken(result.accessToken);
         this.tokenStorage.saveUsername(result.username);
         this.tokenStorage.saveAuthorities(result.authorities);
+        }
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit {
      });
 
   }
-  // reloadPage() {
-  //   window.location.reload();
-  // }
+  reloadPage() {
+    window.location.reload();
+  }
 }

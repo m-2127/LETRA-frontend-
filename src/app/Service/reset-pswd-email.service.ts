@@ -15,11 +15,6 @@ export class ResetPswdEmailService {
   constructor(private http: HttpClient) { }
 
   sendemail( emailinfo : EmailInfo){
-    // let params = new HttpParams();
-    // params = params.append('email', emailinfo);
-    // console.log(params);
-    // return this.http.post<any>('http://localhost:8090/api/auth/forgot', { params: params });
-
       return this.http.post<any>('http://localhost:8090/api/auth/forgot', emailinfo,httpOptions);
   }
 
