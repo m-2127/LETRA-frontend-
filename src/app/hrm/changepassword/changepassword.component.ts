@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { PasswordValidator } from '../../shared/password.validator';
+import { TokenStorageService } from 'src/app/Service/token-storage.service';
 
 
 @Component({
@@ -13,8 +14,10 @@ import { PasswordValidator } from '../../shared/password.validator';
 export class ChangepasswordComponent implements OnInit {
 
   pwRegex = /^([a-zA-Z0-9@*#]{8,15})$/;
+  info: { token: string; username: string; authorities: string[]; };
+  
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private token: TokenStorageService, private fb: FormBuilder) { }
 
   changePasswordForm = this.fb.group({
     currentPassword: ['', Validators.required],
@@ -24,6 +27,11 @@ export class ChangepasswordComponent implements OnInit {
 
 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities()
+    };
 
         let toggle = true;
 
@@ -41,21 +49,21 @@ export class ChangepasswordComponent implements OnInit {
     });
 
 
-    	$(document).ready(function() {
-			 const navoffeset = $('.header-main').offset().top;
-			 $(window).scroll(function() {
-				const scrollpos = $(window).scrollTop();
-				if (scrollpos >= navoffeset) {
-					$('.header-main').addClass('fixed');
-				} else {
-					$('.header-main').removeClass('fixed');
-				}
-			 });
+    $(document).ready(function() {
+      const navoffeset = $('.header-main').offset().top;
+    $(window).scroll(function() {
+      const scrollpos = $(window).scrollTop();
+    if (scrollpos >= navoffeset) {
+        $('.header-main').addClass('fixed');
+    } else {
+        $('.header-main').removeClass('fixed');
+    }
+  }); });
+}
 
-    });
-    
-    
-  
+  logout() {
+    this.token.signOut();
+    window.location.href = '/';
   }
 
 }

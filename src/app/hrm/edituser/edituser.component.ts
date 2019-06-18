@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthenticationService } from 'src/app/Service/authentication.service';
 import * as $ from 'jquery';
+import { TokenStorageService } from 'src/app/Service/token-storage.service';
+
 @Component({
   selector: 'app-edituser',
   templateUrl: './edituser.component.html',
   styleUrls: ['./edituser.component.css']
 })
 export class EdituserComponent implements OnInit {
+  info: { token: string; username: string; authorities: string[]; };
 
-  constructor(private fb: FormBuilder, private _authService: AuthenticationService) { }
+  constructor(private token: TokenStorageService, private fb: FormBuilder, private _authService: AuthenticationService) { }
 
   EditUser = this.fb.group({ firstName: [''], lastName: [''], email: [''], password: [''] });
 
@@ -18,6 +21,13 @@ export class EdituserComponent implements OnInit {
 
 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities()
+    };
+
+
     let toggle = true;
 
     const newLocal = $('.sidebar-icon').click(function () {
@@ -34,18 +44,17 @@ export class EdituserComponent implements OnInit {
     });
 
 
-    	$(document).ready(function() {
-			 const navoffeset = $('.header-main').offset().top;
-			 $(window).scroll(function() {
-				const scrollpos = $(window).scrollTop();
-				if (scrollpos >= navoffeset) {
-					$('.header-main').addClass('fixed');
-				} else {
-					$('.header-main').removeClass('fixed');
-				}
-			 });
-
-		});
+    $(document).ready(function() {
+      const navoffeset = $('.header-main').offset().top;
+    $(window).scroll(function() {
+      const scrollpos = $(window).scrollTop();
+    if (scrollpos >= navoffeset) {
+        $('.header-main').addClass('fixed');
+    } else {
+        $('.header-main').removeClass('fixed');
+    }
+  });
+});
 
   }
 
@@ -58,4 +67,8 @@ export class EdituserComponent implements OnInit {
       );
   }
 
+  logout() {
+    this.token.signOut();
+    window.location.href = '/';
+  }
 }

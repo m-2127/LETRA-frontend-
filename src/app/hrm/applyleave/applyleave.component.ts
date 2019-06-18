@@ -13,7 +13,7 @@ export class ApplyleaveComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private _authService: AuthenticationService, private token: TokenStorageService) { }
 
-  LeaveRequestForm = this.fb.group({setDate: [''], endDate: [''], leave: [''], Reason: ['']});
+  LeaveRequestForm = this.fb.group({setDate: [''], endDate: [''], leaveType: [''], reason: ['']});
 
   info: any;
 
@@ -41,19 +41,17 @@ export class ApplyleaveComponent implements OnInit {
     });
 
 
-    	$(document).ready(function() {
-			 const navoffeset = $('.header-main').offset().top;
-			 $(window).scroll(function() {
-				const scrollpos = $(window).scrollTop();
-				if (scrollpos >= navoffeset) {
-					$('.header-main').addClass('fixed');
-				} else {
-					$('.header-main').removeClass('fixed');
-				}
-			 });
-
-		});
-  }
+    $(document).ready(function() {
+      const navoffeset = $('.header-main').offset().top;
+    $(window).scroll(function() {
+      const scrollpos = $(window).scrollTop();
+    if (scrollpos >= navoffeset) {
+        $('.header-main').addClass('fixed');
+    } else {
+        $('.header-main').removeClass('fixed');
+    }
+  }); });
+}
 
   onSubmit() {
     console.log(this.LeaveRequestForm.value);
@@ -66,7 +64,7 @@ export class ApplyleaveComponent implements OnInit {
 
   logout() {
     this.token.signOut();
-    window.location.reload();
+    window.location.href = '/';
   }
 
 

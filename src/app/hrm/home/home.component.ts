@@ -43,18 +43,17 @@ export class HomeComponent implements OnInit {
     });
 
 
-    	$(document).ready(function() {
-			 const navoffeset = $('.header-main').offset().top;
-			 $(window).scroll(function() {
-				const scrollpos = $(window).scrollTop();
-				if (scrollpos >= navoffeset) {
-					$('.header-main').addClass('fixed');
-				} else {
-					$('.header-main').removeClass('fixed');
-				}
-			 });
-
-		});
+     $(document).ready(function() {
+        const navoffeset = $('.header-main').offset().top;
+      $(window).scroll(function() {
+        const scrollpos = $(window).scrollTop();
+      if (scrollpos >= navoffeset) {
+          $('.header-main').addClass('fixed');
+      } else {
+          $('.header-main').removeClass('fixed');
+      }
+    });
+  });
   }
 
   logout() {
