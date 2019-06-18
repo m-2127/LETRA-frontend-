@@ -24,7 +24,6 @@ export class ResetPswdEmailService {
   }
 
   resetpassword(passwordinfo : PasswordInfo){
-    console.log()
     return this.http.post<any>('http://localhost:8090/api/auth/reset',  passwordinfo ,httpOptions );
   }
 

@@ -47,24 +47,22 @@ export class LoginComponent implements OnInit {
           role => {
           if (role === 'ROLE_HRM') {
             this.router.navigate(['hrm/home']);
-            
             return false;
-          } 
-          else {
+          } else {
           this.router.navigate(['employee']);
           return true;
           }
         },
-        error => {
-          console.log(error);
-          this.errorMessage = error.error.message;
-          this.isLoginFailed = true;
+          error => {
+            console.log(error);
+            this.errorMessage = error.error.message;
+            this.isLoginFailed = true;
         }
       );
   //        }
     //       else
     //       this.invalidLogin = true; 
-     }); 
+     });
 
   }
   // reloadPage() {
