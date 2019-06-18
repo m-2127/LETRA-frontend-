@@ -44,35 +44,41 @@
               <div class="tab-content tab-pane active" id="horizontal-form">
                   
                 <form [formGroup]="allocateEmployeeForm" (submit)="submit()">
-                  <div formArrayName="lists">
+                  <div class="container" formArrayName="lists">
                     <div *ngFor="let lists of employeelist.controls; let i = index">
                       <div [formGroupName]="i">
-                        <div>
-                          <label>Project ID</label>
-                          <div>
-                            <input type="text" formControlName="projectId">
+                        <div class="row taskform">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label">Project ID</label>
+                              <div class="col-sm-6">
+                                <input type="text" formControlName="projectId" class="form-control1">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label">Task ID</label>
+                              <div class="col-sm-6">
+                                <input type="text" formControlName="taskId" class="form-control1">
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <label>Task ID</label>
-                          <div>
-                            <input type="text" formControlName="taskId">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label">Employee ID</label>
+                              <div class="col-sm-6">
+                                <input type="text" formControlName="employeeId" class="form-control1">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label">Reporting Manager's ID</label>
+                              <div class="col-sm-6">
+                                <input type="text" formControlName="rmId" class="form-control1">
+                              </div>
+                            </div>
+                            <div class="form-group text-right">
+                                <button class="btn btn-danger" type="button" (click)="removeList(i)"> Remove </button>
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <label>Employee ID</label>
-                          <div>
-                            <input type="text" formControlName="employeeId">
-                          </div>
-                        </div>
-                        <div>
-                          <label>Reporting Manager's ID</label>
-                          <div>
-                            <input type="text" formControlName="rmId">
-                          </div>
-                        </div>
-                        <div class="form-group col-12 text-right">
-                            <button class="btn btn-danger" type="button" (click)="removeList(i)"> Remove </button>
                         </div>
                       </div>
                     </div>

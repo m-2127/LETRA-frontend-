@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
 import { TokenStorageService } from 'src/app/Service/token-storage.service';
+import { AuthenticationService } from 'src/app/Service/authentication.service';
+import { from, Observable, interval } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,9 @@ import { TokenStorageService } from 'src/app/Service/token-storage.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private token: TokenStorageService) { }
+  @Input() details$: Observable<any>;
+
+  constructor(private token: TokenStorageService, private auth: AuthenticationService) { }
 
   info: any;
 
@@ -19,6 +24,8 @@ export class HomeComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+
+    this.details$ = this.auth.getDetails();
 
     let toggle = true;
 

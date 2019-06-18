@@ -25,6 +25,7 @@ import { EdituserComponent } from './hrm/edituser/edituser.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ProjectDetailsComponent } from './rm/project-details/project-details.component';
 import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemployee.component';
+import { FullcalendarComponent } from './fullcalendar/fullcalendar.component';
 
 
 
@@ -46,7 +47,8 @@ import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemploye
     ChangepasswordComponent,
     EdituserComponent,
     ProjectDetailsComponent,
-    AllocateemployeeComponent
+    AllocateemployeeComponent,
+    FullcalendarComponent
 
   ],
   imports: [
