@@ -80,7 +80,7 @@ const routes: Routes = [
     path: 'rm/allocateemployee',
     component: AllocateemployeeComponent
   },
-  { 
+  {
     path:'fullcalendar', 
     component: FullcalendarComponent
   }

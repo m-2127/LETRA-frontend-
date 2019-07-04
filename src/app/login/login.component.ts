@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     this._authService.auth(this.userModel)
     .subscribe(
       result => {
-        if(result && result.accessToken){
-        this.tokenStorage.saveToken(result.accessToken);
+        if(result && result.token){
+        this.tokenStorage.saveToken(result.token);
         this.tokenStorage.saveUsername(result.username);
         this.tokenStorage.saveAuthorities(result.authorities);
         }

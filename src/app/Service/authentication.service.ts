@@ -8,6 +8,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +17,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
 
-  auth(user: User):Observable<JwtResponse>{
-    return this.http.post<JwtResponse>('http://localhost:8090/api/auth/signin', user,httpOptions);
+  auth(user: User): Observable<JwtResponse> {
+    return this.http.post<JwtResponse>('http://localhost:8090/api/auth/signin', user, httpOptions);
   }
 
   apply(data) {
