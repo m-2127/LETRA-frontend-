@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   connect() {
-    const socket = new SockJS('http://localhost:8080/gkz-stomp-endpoint');
+    const socket = new SockJS('http://localhost:8090/api/auth/letra-stomp-endpoint');
+   // const socket = new SockJS('http://localhost:8080/letra-stomp-endpoint');
     this.stompClient = Stomp.over(socket);
 
     const _this = this;
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
       _this.setConnected(true);
       console.log('Connected: ' + frame);
 
-      _this.stompClient.subscribe('/topic/hi', function (hello) {
+      _this.stompClient.subscribe('/rmtemplate/rm', function (hello) {
         _this.showGreeting(JSON.parse(hello.body).greeting);
       });
     });
@@ -59,7 +60,7 @@ export class HomeComponent implements OnInit {
 
   sendName() {
     this.stompClient.send(
-      '/gkz/hello',
+      '/app/api/rm/view',
       {},
       JSON.stringify({ 'email': this.email })
     );
