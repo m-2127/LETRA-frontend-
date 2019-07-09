@@ -26,8 +26,21 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ProjectDetailsComponent } from './rm/project-details/project-details.component';
 import { AllocateemployeeComponent } from './rm/allocateemployee/allocateemployee.component';
 import { FullcalendarComponent } from './fullcalendar/fullcalendar.component';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular-6-social-login';
 
 
+export function getAuthServiceConfigs() {
+  // tslint:disable-next-line:prefer-const
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('307422697599-gc77fh5kdfo6met6luu9v1kbe2eufgph.apps.googleusercontent.com')
+        }
+      ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -57,9 +70,14 @@ import { FullcalendarComponent } from './fullcalendar/fullcalendar.component';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    SocialLoginModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

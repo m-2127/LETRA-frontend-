@@ -4,7 +4,7 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { TokenStorageService } from '../Service/token-storage.service';
 import { AuthenticationService } from '../Service/authentication.service';
-
+import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,8 @@ import { AuthenticationService } from '../Service/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  // tslint:disable-next-line:max-line-length
+  constructor(private _authService: AuthenticationService, private router: Router, private tokenStorage: TokenStorageService, private socialAuthService: AuthService ) { }
   invalidLogin : boolean;
  // private headers;
   private resp : HttpResponse <any>
@@ -19,13 +21,26 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  constructor(private _authService: AuthenticationService, private router : Router,
-    private tokenStorage: TokenStorageService ) { }
 
+  // tslint:disable-next-line:member-ordering
   userModel = new User('', '');
   // tslint:disable-next-line:max-line-length
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
- 
+
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + ' sign in data : ' , userData);
+        // Now sign-in with userData
+        // ...
+      }
+    );
+  }
+
   ngOnInit() {
   }
 
