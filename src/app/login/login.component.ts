@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'user';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { TokenStorageService } from '../Service/token-storage.service';
 import { AuthenticationService } from '../Service/authentication.service';
 import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +14,11 @@ import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+
+
   // tslint:disable-next-line:max-line-length
-  constructor(private _authService: AuthenticationService, private router: Router, private tokenStorage: TokenStorageService, private socialAuthService: AuthService ) { }
+  constructor(private httpClient: HttpClient, private _authService: AuthenticationService, private router: Router, private tokenStorage: TokenStorageService, private socialAuthService: AuthService ) { }
   invalidLogin : boolean;
  // private headers;
   private resp : HttpResponse <any>
@@ -38,8 +43,21 @@ export class LoginComponent implements OnInit {
         // Now sign-in with userData
         // ...
       }
-    );
+   );
+  //  this._authService.authgoogle()
+  //  .subscribe(
+  //   result => {
+  //     if(result && result.token){
+  //     this.tokenStorage.saveToken(result.token);
+  //     this.passwordModel.token = url.searchParams.get("token");
+  //     })
   }
+
+  // authgoogle(){
+  //   return this.httpClient.get('http://localhost:8090/oauth2/callback/code').subscribe((res)=>{
+  //     console.log(res);
+  // }
+//);// }
 
   ngOnInit() {
   }
@@ -48,8 +66,8 @@ export class LoginComponent implements OnInit {
     this._authService.auth(this.userModel)
     .subscribe(
       result => {
-        if(result && result.accessToken){
-        this.tokenStorage.saveToken(result.accessToken);
+        if(result && result.token){
+        this.tokenStorage.saveToken(result.token);
         this.tokenStorage.saveUsername(result.username);
         this.tokenStorage.saveAuthorities(result.authorities);
         }

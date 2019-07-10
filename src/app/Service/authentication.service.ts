@@ -20,6 +20,12 @@ export class AuthenticationService {
     return this.http.post<JwtResponse>('http://localhost:8090/api/auth/signin', user,httpOptions);
   }
 
+  authgoogle(){
+    return this.http.get('http://localhost:8090/oauth2/callback/code').subscribe((res)=>{
+      console.log(res);
+  });
+  }
+
   apply(data) {
     return this.http.post<any>('http://localhost:8090/api/auth/applyleave', data);
   }
