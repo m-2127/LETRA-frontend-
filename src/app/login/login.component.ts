@@ -28,15 +28,12 @@ export class LoginComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   public socialSignIn(socialPlatform: string) {
-    let socialPlatformProvider;
-    if (socialPlatform === 'google') {
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
+      const socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
         console.log(socialPlatform + ' sign in data : ' , userData);
         // Now sign-in with userData
-        // ...
+        this._authService.sendToRestApiMethod(userData.email);
       }
     );
   }
