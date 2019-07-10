@@ -15,6 +15,19 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
+  sendToRestApiMethod(email: string): void {
+    this.http.post('http://localhost:8090/api/auth/google',
+    {
+      email: email
+    }
+  ).subscribe(
+    onSuccess => {
+      console.log(onSuccess);
+    }, onFail => {
+      console.log(onFail);
+    }
+  );
+  }
 
   auth(user: User):Observable<JwtResponse>{
     return this.http.post<JwtResponse>('http://localhost:8090/api/auth/signin', user,httpOptions);
